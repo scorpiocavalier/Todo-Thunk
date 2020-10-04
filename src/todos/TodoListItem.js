@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const TodoListItem = ({ todo, onRemoveTodo }) => {
+export default ({ todo, onRemoveTodo }) => {
   return (
     <div>
       <h3>{ todo.text }</h3>
@@ -11,5 +11,3 @@ export const TodoListItem = ({ todo, onRemoveTodo }) => {
     </div>
   )
 }
-
-export default TodoListItem
