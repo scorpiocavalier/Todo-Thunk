@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onCreateTodo = text => dispatch(createTodo(text))
+  onCreateTodo: text => dispatch(createTodo(text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTodoForm)
