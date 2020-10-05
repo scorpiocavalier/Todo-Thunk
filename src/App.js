@@ -33,4 +33,5 @@ const Main = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 500px;
+  padding-top: 10px;
 `
