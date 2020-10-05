@@ -1,22 +1,23 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
 
 import TodoListItem from './TodoListItem'
-import { removeTodo } from '../redux/actions'
 
 export default ({ todos, title }) => {
-  const dispatch = useDispatch()
-
   return (
-    <div>
-      <h3>{ title }</h3>
+    <TodoList>
+      <h2>{ title }</h2>
       { todos.map((todo, index) =>
-        <TodoListItem
-          key={ index }
-          todo={ todo }
-          onRemoveTodo={ text => dispatch(removeTodo(text)) }
-        />
+        <TodoListItem key={ index } todo={ todo } />
       ) }
-    </div>
+    </TodoList>
   )
 }
+
+const TodoList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+  width: 100%;
+`
