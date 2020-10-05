@@ -18,7 +18,7 @@ export default (state = [], action) => {
 
     case MARK_TODO_AS_COMPLETED:
       return state.map(todo => {
-        return todo.text === payload.text
+        return todo.id === payload.todo.id
           ? { ...todo, isCompleted: true }
           : todo
       })

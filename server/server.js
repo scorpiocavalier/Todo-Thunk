@@ -46,7 +46,6 @@ app.post('/todos/:id/completed', (req, res) => {
 
   if (matchingTodo) {
     todos = todos.map(todo => todo.id === id ? updatedTodo : todo)
-    console.log('todos', todos)
     res.status(200).json(updatedTodo)
   } else {
     res.status(400).json({ message: 'Could not update todo.' })
