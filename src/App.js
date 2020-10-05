@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { hot } from 'react-hot-loader'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { GlobalStyle } from './GloablStyles'
 import NewTodoForm from './todos/NewTodoForm'
 import TodoList from './todos/TodoList'
-import { GlobalStyle } from './GloablStyles'
+import { loadTodos } from './redux/thunks'
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  const isLoading = useSelector(state => state.isLoading)
+
   const incompletedTodos = useSelector(state =>
     state.todos.filter(todo => !todo.isCompleted)
   )
@@ -16,12 +21,23 @@ const App = () => {
     state.todos.filter(todo => todo.isCompleted)
   )
 
+  const loadingMsg = <LoadingMsg>Loading Todos...</LoadingMsg>
+
+  const content =
+    <div>
+      <TodoList todos={ incompletedTodos } title="Todos" />
+      <TodoList todos={ completedTodos } title="Done" />
+    </div>
+
+  useEffect(() => {
+    dispatch(loadTodos())
+  }, [])
+
   return (
     <Main>
       <GlobalStyle />
       <NewTodoForm />
-      <TodoList todos={ incompletedTodos } title="Todos" />
-      <TodoList todos={ completedTodos } title="Done" />
+      { isLoading ? loadingMsg : content }
     </Main>
   )
 }
@@ -34,4 +50,9 @@ const Main = styled.div`
   margin: 0 auto;
   width: 500px;
   padding-top: 10px;
+`
+
+const LoadingMsg = styled.div`
+  display: flex;
+  justify-content: center;
 `

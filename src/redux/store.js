@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import todos from './reducers/todosReducer'
+import isLoading from './reducers/loadingReducer'
 
 const persistConfig = {
   key: 'root',
@@ -14,7 +15,8 @@ const persistConfig = {
 }
 
 const reducers = {
-  todos
+  todos,
+  isLoading,
 }
 
 const rootReducer = combineReducers(reducers)
