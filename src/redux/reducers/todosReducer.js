@@ -1,4 +1,8 @@
-import { CREATE_TODO, MARK_TODO_AS_COMPLETED, REMOVE_TODO } from '../actions'
+import {
+  CREATE_TODO,
+  MARK_TODO_AS_COMPLETED,
+  REMOVE_TODO
+} from '../actions'
 
 export default (state = [], action) => {
   const { type, payload } = action
