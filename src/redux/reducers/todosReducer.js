@@ -11,7 +11,7 @@ export default (state = [], action) => {
   const { type, payload } = action
   switch (type) {
     case CREATE_TODO:
-      return state.concat({ text: payload.text, isCompleted: false })
+      return state.concat(payload.todo)
     case REMOVE_TODO:
       return state.filter(todo => todo.text !== payload.text)
     case MARK_TODO_AS_COMPLETED:

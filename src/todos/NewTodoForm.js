@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { createTodo } from '../redux/actions'
+import { addTodoRequest } from '../redux/thunks'
 
 export default () => {
   const [ inputValue, setInputValue ] = useState('')
@@ -15,7 +15,7 @@ export default () => {
       const todoExists = todos.some(todo => todo.text === inputValue)
       if (!todoExists) {
         setMessage('')
-        dispatch(createTodo(inputValue))
+        dispatch(addTodoRequest(inputValue))
       } else {
         setMessage('Todo already exists.')
       }
