@@ -12,17 +12,19 @@ export default (state = [], action) => {
   switch (type) {
     case CREATE_TODO:
       return state.concat(payload.todo)
+
     case REMOVE_TODO:
-      return state.filter(todo => todo.text !== payload.text)
+      return state.filter(todo => todo.id !== payload.todo.id)
+
     case MARK_TODO_AS_COMPLETED:
       return state.map(todo => {
         return todo.text === payload.text
-          ? { text: payload.text, isCompleted: true }
+          ? { ...todo, isCompleted: true }
           : todo
       })
+
     case LOAD_TODOS_SUCCESS:
-      const { todos } = payload
-      return todos
+      return payload.todos
 
     case LOAD_TODOS_FAILURE:
     case LOAD_TODOS_IN_PROGRESS:

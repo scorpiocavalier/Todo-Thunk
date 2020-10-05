@@ -1,4 +1,4 @@
-export const todos = [
+export const initialTodos = [
   {
     id: 'ae06181d-92c2-4fed-a29d-fb53a6301eb9',
     text: 'Learn about React Ecosystems',

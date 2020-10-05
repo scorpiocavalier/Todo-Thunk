@@ -1,9 +1,10 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import { uuid } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid'
 
-import { todos } from './data'
+import { initialTodos } from './data'
+let todos = [ ...initialTodos ]
 
 const app = express()
 
@@ -25,8 +26,8 @@ app.post('/todos', (req, res) => {
   const { text } = req.body
   if (text) {
     const newTodo = {
-      id: uuid(),
-      createdAt: Date.now(),
+      id: uuidv4(),
+      createdAt: new Date(Date.now()),
       isCompleted: false,
       text,
     }
@@ -41,16 +42,11 @@ app.post('/todos', (req, res) => {
 app.post('/todos/:id/completed', (req, res) => {
   const { id } = req.params
   const matchingTodo = todos.find(todo => todo.id === id)
-  const updatedTodo = {
-    ...matchingTodo,
-    isCompleted: true
-  }
-  if (updatedTodo) {
-    todos = todos.map(todo => {
-      return todo.id === id
-        ? updatedTodo
-        : todo
-    })
+  const updatedTodo = { ...matchingTodo, isCompleted: true }
+
+  if (matchingTodo) {
+    todos = todos.map(todo => todo.id === id ? updatedTodo : todo)
+    console.log('todos', todos)
     res.status(200).json(updatedTodo)
   } else {
     res.status(400).json({ message: 'Could not update todo.' })

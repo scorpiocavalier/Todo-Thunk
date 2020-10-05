@@ -2,14 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { markTodoAsCompleted, removeTodo } from '../redux/actions'
+import { markTodoAsCompleted } from '../redux/actions'
+import { removeTodoRequest } from '../redux/thunks'
 
 export default ({ todo }) => {
-  const { text, isCompleted } = todo
+  const { id, text, isCompleted } = todo
   const dispatch = useDispatch()
 
   const onCompleteTodo = () => dispatch(markTodoAsCompleted(text))
-  const onRemoveTodo = () => dispatch(removeTodo(text))
+  const onRemoveTodo = () => dispatch(removeTodoRequest(id))
 
   const completeBtn =
     <button className="mark-as-completed" onClick={ onCompleteTodo }>
