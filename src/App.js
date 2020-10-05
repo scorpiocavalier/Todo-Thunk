@@ -17,8 +17,8 @@ const App = () => {
   return (
     <div>
       <NewTodoForm />
-      <TodoList todos={ incompletedTodos } />
-      <TodoList todos={ completedTodos } />
+      <TodoList todos={ incompletedTodos } title="Todos" />
+      <TodoList todos={ completedTodos } title="Done" />
     </div>
   )
 }

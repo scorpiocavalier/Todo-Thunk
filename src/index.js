@@ -5,9 +5,8 @@ import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 
 import App from './App'
-import { configureStore } from './redux/store'
+import store from './redux/store'
 
-const store = configureStore()
 const persistor = persistStore(store)
 
 ReactDOM.render(
