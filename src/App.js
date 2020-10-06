@@ -1,25 +1,24 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { hot } from 'react-hot-loader'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { GlobalStyle } from './GloablStyles'
-import NewTodoForm from './todos/NewTodoForm'
-import TodoList from './todos/TodoList'
+import NewTodoForm from './components/todos/NewTodoForm'
+import TodoList from './components/todos/TodoList'
 import { loadTodos } from './redux/thunks'
+import {
+  selectCompletedTodos,
+  selectIncompleteTodos,
+  selectIsLoading
+} from './Selectors'
 
 const App = () => {
   const dispatch = useDispatch()
 
-  const isLoading = useSelector(state => state.isLoading)
-
-  const incompletedTodos = useSelector(state =>
-    state.todos.filter(todo => !todo.isCompleted)
-  )
-
-  const completedTodos = useSelector(state =>
-    state.todos.filter(todo => todo.isCompleted)
-  )
+  const isLoading = selectIsLoading()
+  const incompletedTodos = selectIncompleteTodos()
+  const completedTodos = selectCompletedTodos()
 
   const loadingMsg = <LoadingMsg>Loading Todos...</LoadingMsg>
 

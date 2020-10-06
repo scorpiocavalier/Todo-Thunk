@@ -17,11 +17,7 @@ export default (state = [], action) => {
       return state.filter(todo => todo.id !== payload.todo.id)
 
     case MARK_TODO_AS_COMPLETED:
-      return state.map(todo => {
-        return todo.id === payload.todo.id
-          ? { ...todo, isCompleted: true }
-          : todo
-      })
+      return state.map(todo => todo.id === payload.todo.id ? payload.todo : todo)
 
     case LOAD_TODOS_SUCCESS:
       return payload.todos

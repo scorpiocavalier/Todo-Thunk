@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { markTodoAsCompletedRequest, removeTodoRequest } from '../redux/thunks'
+import { markTodoAsCompletedRequest, removeTodoRequest } from '../../redux/thunks'
 
 export default ({ todo }) => {
   const { id, text, isCompleted } = todo

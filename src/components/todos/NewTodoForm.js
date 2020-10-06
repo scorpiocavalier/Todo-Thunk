@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { addTodoRequest } from '../redux/thunks'
+import { addTodoRequest } from '../../redux/thunks'
+import { selectTodos } from '../../Selectors'
 
 export default () => {
   const [ inputValue, setInputValue ] = useState('')
   const [ message, setMessage ] = useState('')
-  const todos = useSelector(state => state.todos)
+  const todos = selectTodos()
   const dispatch = useDispatch()
 
   const addTodo = (e) => {
